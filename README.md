@@ -1,4 +1,4 @@
-# Create React Express App
+# NYT React Search
 
 ## About This Boilerplate
 
