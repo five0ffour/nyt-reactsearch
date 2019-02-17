@@ -43,15 +43,25 @@ class Search extends Component {
 
   renderBooks = () => {
     return this.state.books.map((book, i) => {
-      console.log(book);
       return <BookListItem 
         key = {i}  
         title={book.title}
+        authors={book.authors}
         description={book.description}
         thumbnail={book.thumbnail}
         link={book.link}
+        viewClickHandler={this.handleViewBookClick}
+        saveClickHandler={this.handleSaveBookClick}
       />    
     });
+  }
+
+  handleViewBookClick = () => {
+    console.log("Clicked view book");
+  }
+
+  handleSaveBookClick = () => {
+    console.log("Clicked save book");      
   }
 
   handleSearchClick = event => {
