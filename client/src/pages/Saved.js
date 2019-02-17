@@ -3,12 +3,10 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { BookList, BookListItem } from "../components/BookList";
-import { Input,  FormBtn } from "../components/Form";
 
-class Search extends Component {
+class Saved extends Component {
   state = {
     books: [],
-    title: ""
   };
 
   // component load state initialization
@@ -44,34 +42,16 @@ class Search extends Component {
     console.log("Clicked view book", index);
   }
 
-  handleSaveBookClick = (index) => {
+  handleDeleteBookClick = (index) => {
     const book = this.state.books[index];
     if (book.title) {
-      API.saveBook({
-        title: book.title,
-        description: book.description,
-        authors: book.authors.slice(),
-        link: book.link,
-        thumbnail: book.thumbnail
+      API.deleteBook({
+        id: index
       })
         .then(res => this.render())
         .catch(err => console.log(err));
     }
   }
-
-  // main search submit handler, calls google API
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    if (this.state.title) {
-
-      API.searchBooks({ title: this.state.title})
-        .then(res => {
-          this.setState({books : this.mapBookObjects(res).slice()})
-          this.renderBooks();
-        })
-        .catch(err => console.log(err));
-    }
-  };
 
   // utility function to map google response to state object
   mapBookObjects = (res) => {
@@ -104,20 +84,6 @@ class Search extends Component {
               <h1>(React) Google Books Search</h1>
               <h4>Search for and  Save Books of Interest</h4>
             </Jumbotron>
-            <form>
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Book Title"
-              />
-              <FormBtn
-                disabled={!(this.state.title)}
-                onClick={this.handleFormSubmit}
-              >
-                Search
-              </FormBtn>
-            </form>
           </Col>
           <Col size="md-12">
             <div>
@@ -137,4 +103,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default Saved;

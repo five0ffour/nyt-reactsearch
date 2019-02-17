@@ -20,7 +20,7 @@ export function BookListItem(props) {
             <h6>Written by: {props.authors}</h6>
           </Col>
           <Col size="lg-3">
-            <Button type="view" className="btn-info"   children="" onClick={props.viewClickHandler}>View</Button>
+            <Button type="view" className="btn-primary" children="" onClick={props.viewClickHandler}>View</Button>
             <Button type="save" className="btn-success" children="" onClick={props.saveClickHandler}>Save</Button>
           </Col>
         </Row>
