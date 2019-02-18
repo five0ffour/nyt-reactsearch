@@ -148,16 +148,19 @@ class Search extends Component {
               </FormBtn>
             </form>
           </Col>
+        </Row>
+
+        <Row>
           <Col size="md-12">
             <div style={{border: "1px solid lightgrey", borderRadius: "5px", padding: "5px"}}>
               <h4 id="results-lbl">Results</h4>
-            {this.state.books.length ? (
-              <BookList>
-                {this.renderBooks()}  
-              </BookList>
-            ) : (
-              <h4 id="noresults-lbl">No Results to Display</h4>
-            )}
+                {this.state.books.length ? (
+                  <BookList>
+                    {this.renderBooks()}  
+                  </BookList>
+                ) : (
+                  <h4 id="noresults-lbl">No Results to Display</h4>
+                )}
             </div>
           </Col>
         </Row>
