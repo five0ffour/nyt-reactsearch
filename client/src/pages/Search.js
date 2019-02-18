@@ -20,6 +20,11 @@ class Search extends Component {
   /* UTILITY FUNCTIONS */
   /*********************/
 
+  resetSearch = () => {
+    // clear the search field and trigger a re-render
+    this.setState({title :  ""});
+  }
+
   // utility function to map google response to state object
   mapBookObjects = (res) => {
     return res.data.items.map(item => {
@@ -77,7 +82,7 @@ class Search extends Component {
         link: book.link,
         thumbnail: book.thumbnail
       })
-        .then(res => this.render())
+        .then(res => this.resetSearch())
         .catch(err => console.log(err));
     }
   }
@@ -144,7 +149,7 @@ class Search extends Component {
             </form>
           </Col>
           <Col size="md-12">
-            <div>
+            <div style={{border: "1px solid lightgrey", borderRadius: "5px", padding: "5px"}}>
               <h4 id="results-lbl">Results</h4>
             {this.state.books.length ? (
               <BookList>

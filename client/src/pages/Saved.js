@@ -100,7 +100,7 @@ class Saved extends Component {
             </Jumbotron>
           </Col>
           <Col size="md-12">
-            <div>
+          <div style={{border: "1px solid lightgrey", borderRadius: "5px", padding: "5px"}}>
               <h4 id="results-lbl">Results</h4>
             {this.state.books.length ? (
               <BookList>

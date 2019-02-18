@@ -5,5 +5,10 @@ a.button {
 
   text-decoration: none;
   color: initial;
-  margin: 0 5px 0 5px;
+  margin: 5px;
+}
+
+.list-group-item {
+  background-color: #eeeeee;
+  margin: 5px;
 }
