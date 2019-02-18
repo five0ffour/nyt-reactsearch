@@ -12,6 +12,16 @@ class Saved extends Component {
   // component load state initialization
   componentDidMount() {
     this.setState({books: [], title: ""});
+
+    this.loadBooks();
+  }
+
+  
+  loadBooks = () => {
+    API.getBooks().then((res) => {
+      console.log(res);
+      this.setState({books : res.data});
+    });
   }
 
   // field data capture on input clicks 
