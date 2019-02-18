@@ -20,7 +20,7 @@ try it at:  https://mbg-nyt--reactsearch.herokuapp.com
  4) A delete button that removes the book from the MongoDB database  
  
  ## Demonstration of Functionality    
-![Google Book Search](./docs/Looney-Tunes-Clicky-Game.gif)  
+![Google Book Search](./docs/nyt-reactsearch.gif)  
 
 ## Developer notes  
 - **.gitignore.** - ubiquitous git file to keep node modules and passwords out of GIT    
