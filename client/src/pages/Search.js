@@ -16,6 +16,35 @@ class Search extends Component {
     this.setState({books: [], title: ""});
   }
 
+  /*********************/
+  /* UTILITY FUNCTIONS */
+  /*********************/
+
+  // utility function to map google response to state object
+  mapBookObjects = (res) => {
+    return res.data.items.map(item => {
+      let book = {};
+      if (item != null &&
+          item.volumeInfo != null ) {
+
+        book.title = item.volumeInfo.title;
+        book.description = item.volumeInfo.description;
+        book.authors = item.volumeInfo.authors.slice();
+        book.link = item.volumeInfo.infoLink;
+
+        if (typeof item.volumeInfo.imageLinks !== 'undefined') {
+          book.thumbnail = item.volumeInfo.imageLinks.thumbnail;
+        }
+      }
+      return book;
+    });
+
+  }
+    
+  /*******************/
+  /* EVENT HANDLERS  */
+  /*******************/
+  
   // field data capture on input clicks 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -24,24 +53,12 @@ class Search extends Component {
     });
   };
 
-  // results component rendering
-  renderBooks = () => {
-    return this.state.books.map((book, i) => {
-      return <BookListItem 
-        key = {i}  
-        title={book.title}
-        authors={book.authors}
-        description={book.description}
-        thumbnail={book.thumbnail}
-        link={book.link}
-        viewClickHandler={() => {this.handleViewBookClick(i)}}
-        saveClickHandler={() => {this.handleSaveBookClick(i)}}
-        />    
-    });
-  }
-
   handleViewBookClick = (index) => {
     console.log("Clicked view book", index);
+  }
+
+  handleDeleteBookClick = (index) => {
+    console.log("Clicked delete book", index);
   }
 
   handleSaveBookClick = (index) => {
@@ -73,25 +90,26 @@ class Search extends Component {
     }
   };
 
-  // utility function to map google response to state object
-  mapBookObjects = (res) => {
-    return res.data.items.map(item => {
-      let book = {};
-      if (item != null &&
-          item.volumeInfo != null ) {
-
-        book.title = item.volumeInfo.title;
-        book.description = item.volumeInfo.description;
-        book.authors = item.volumeInfo.authors.slice();
-        book.link = item.volumeInfo.infoLink;
-
-        if (typeof item.volumeInfo.imageLinks !== 'undefined') {
-          book.thumbnail = item.volumeInfo.imageLinks.thumbnail;
-        }
-      }
-      return book;
+  /**********************/
+  /* RENDER FUNCTIONS  */
+  /**********************/
+  
+  // results component rendering
+   renderBooks = () => {
+    return this.state.books.map((book, i) => {
+      return <BookListItem 
+        key = {i}  
+        title={book.title}
+        authors={book.authors}
+        description={book.description}
+        thumbnail={book.thumbnail}
+        link={book.link}
+        viewClickHandler={() => {this.handleViewBookClick(i)}}
+        saveClickHandler={() => {this.handleSaveBookClick(i)}}
+        deleteClickHandler={() => {this.handleDeleteBookClick(i)}}
+        isSearchView={true}
+        />    
     });
-
   }
 
   // full component render - banner, search box & results

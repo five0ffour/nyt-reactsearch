@@ -21,7 +21,9 @@ export function BookListItem(props) {
           </Col>
           <Col size="lg-3">
             <Button type="view" className="btn-primary" children="" onClick={props.viewClickHandler}>View</Button>
-            <Button type="save" className="btn-success" children="" onClick={props.saveClickHandler}>Save</Button>
+            {props.isSearchView ? (<Button type="save"   className="btn-success" children="" onClick={props.saveClickHandler}>Save</Button>) :
+                                  (<Button type="delete" className="btn-danger"  children="" onClick={props.deleteClickHandler}>Delete</Button>)
+            }
           </Col>
         </Row>
         <Row>
