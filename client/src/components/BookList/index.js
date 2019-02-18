@@ -18,7 +18,7 @@ export function BookListItem(props) {
         <Row>
           <Col size="lg-9">
             <h3>{props.title}</h3>
-            <h6>Written by: {props.authors}</h6>
+            <h6>Written by: {props.authors.join(", ")}</h6>
           </Col>
           <Col size="lg-3">
             <a className="btn btn-primary" href={props.link}>View</a>
