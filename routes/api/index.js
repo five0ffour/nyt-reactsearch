@@ -4,9 +4,4 @@ const bookRoutes = require("./books");
 // Book routes
 router.use("/books", bookRoutes);
 
-// Default catch-all route
-router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
-
 module.exports = router;
