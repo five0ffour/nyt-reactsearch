@@ -2,6 +2,7 @@ import React from "react";
 import Thumbnail from "../Thumbnail";
 import Button from "../Button"
 import { Container, Row, Col } from "../Grid";
+import "./style.css"
 
 // BookList - renders an unorderd list of book items
 export function BookList({ children }) {
@@ -20,7 +21,7 @@ export function BookListItem(props) {
             <h6>Written by: {props.authors}</h6>
           </Col>
           <Col size="lg-3">
-            <Button type="view" className="btn-primary" children="" onClick={props.viewClickHandler}>View</Button>
+            <a className="btn btn-primary" href={props.link}>View</a>
             {props.isSearchView ? (<Button type="save"   className="btn-success" children="" onClick={props.saveClickHandler}>Save</Button>) :
                                   (<Button type="delete" className="btn-danger"  children="" onClick={props.deleteClickHandler}>Delete</Button>)
             }
@@ -32,7 +33,6 @@ export function BookListItem(props) {
           </Col>
           <Col size="sm-9">
           <p>{props.description}</p>
-          <a href={props.link}>Google Preview</a>
           </Col>
         </Row>
       </Container>

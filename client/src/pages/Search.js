@@ -24,17 +24,23 @@ class Search extends Component {
   mapBookObjects = (res) => {
     return res.data.items.map(item => {
       let book = {};
+
       if (item != null &&
           item.volumeInfo != null ) {
-
         book.title = item.volumeInfo.title;
         book.description = item.volumeInfo.description;
-        book.authors = item.volumeInfo.authors.slice();
         book.link = item.volumeInfo.infoLink;
 
-        if (typeof item.volumeInfo.imageLinks !== 'undefined') {
+        if (typeof item.volumeInfo.authors !== 'undefined' && item.volumeInfo.authors !== null)
+          book.authors = item.volumeInfo.authors.slice();
+        else
+          book.authors = [];
+
+        if (typeof item.volumeInfo.imageLinks !== 'undefined' && item.volumeInfo.imageLinks !== null)
           book.thumbnail = item.volumeInfo.imageLinks.thumbnail;
-        }
+        else
+          book.thumbnail = "";
+        
       }
       return book;
     });
