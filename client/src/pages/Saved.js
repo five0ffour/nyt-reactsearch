@@ -44,6 +44,7 @@ class Saved extends Component {
         link={book.link}
         viewClickHandler={() => {this.handleViewBookClick(i)}}
         saveClickHandler={() => {this.handleSaveBookClick(i)}}
+        deleteClickHandler={() => {this.handleDeleteBookClick(i)}}
         />    
     });
   }
@@ -52,13 +53,17 @@ class Saved extends Component {
     console.log("Clicked view book", index);
   }
 
+  // we should never call this,  only valid from search page
+  handleSaveBookClick = (index) => {
+    console.log("Clicked save book", index);
+  }
+
   handleDeleteBookClick = (index) => {
     const book = this.state.books[index];
+    console.log("deleting book: ", book.title, book._id)
     if (book.title) {
-      API.deleteBook({
-        id: index
-      })
-        .then(res => this.render())
+      API.deleteBook(book._id)
+        .then(res => this.loadBooks())
         .catch(err => console.log(err));
     }
   }
